@@ -1,0 +1,1 @@
+# synthetiq-manga-es
