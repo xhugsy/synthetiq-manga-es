@@ -1,0 +1,54 @@
+name: Actualizar hashes SHA256
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-hashes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Calcular y actualizar SHA256
+        run: |
+          python3 - <<'EOF'
+          import hashlib, json, pathlib
+
+          def sha256_file(path):
+              return hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+
+          js_hash = sha256_file("modules/mangadex-jp-es/index.js")
+          icon_path = pathlib.Path("modules/mangadex-jp-es/icon.png")
+          icon_hash = sha256_file(icon_path) if icon_path.exists() else None
+
+          manifest_path = pathlib.Path("modules/mangadex-jp-es/manifest.json")
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          manifest["entry"]["sha256"] = js_hash
+          if icon_hash:
+              manifest["icon"]["sha256"] = icon_hash
+          manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+          manifest_hash = sha256_file(manifest_path)
+
+          index_path = pathlib.Path("index.json")
+          index = json.loads(index_path.read_text(encoding="utf-8"))
+          for mod in index.get("modules", []):
+              if mod.get("id") == "mangadex-jp-es":
+                  mod["manifest"]["sha256"] = manifest_hash
+                  if icon_hash:
+                      mod["icon"]["sha256"] = icon_hash
+          index_path.write_text(json.dumps(index, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          EOF
+
+      - name: Guardar cambios si hubo actualizaciones
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json modules/mangadex-jp-es/manifest.json
+          git diff --cached --quiet || (git commit -m "chore: actualizar sha256" && git push)
