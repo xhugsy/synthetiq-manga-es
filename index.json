@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "modules": [
+    {
+      "contentRating": "suggestive",
+      "contentType": "pageImages",
+      "familyID": "mangadex-jp-es",
+      "icon": {
+        "path": "modules/mangadex-jp-es/icon.png",
+        "sha256": "9d515be247e76ea1dddf8a60ecba7428d75091a9fb7a0fbb9a3f90a99b85b202"
+      },
+      "id": "mangadex-jp-es",
+      "language": "es",
+      "manifest": {
+        "path": "modules/mangadex-jp-es/manifest.json",
+        "sha256": ""
+      },
+      "name": "MangaDex JP (Español)",
+      "releaseTrack": "beta",
+      "status": "active",
+      "version": "1.0.0",
+      "sortPriority": 1
+    }
+  ],
+  "repository": {
+    "homepage": "https://github.com/TU-USUARIO/synthetiq-manga-es",
+    "id": "tu-usuario.manga-es",
+    "name": "Manga Japonés en Español",
+    "owner": "xhugsy",
+    "universalLink": "https://synthetiq.uk/manga/modules"
+  },
+  "schemaVersion": 1
+}
