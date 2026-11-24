@@ -2,8 +2,7 @@
   "allowedHosts": [
     "api.mangadex.org",
     "uploads.mangadex.org",
-    "*.mangadex.network",
-    "wsrv.nl"
+    "*.mangadex.network"
   ],
   "attribution": {
     "author": "xhugsy",
@@ -25,7 +24,7 @@
   "contractVersion": 1,
   "entry": {
     "path": "modules/mangadex-jp-es/index.js",
-    "sha256": "5dd2cb2c17fa2fcf8834881d77d4feaf7c7a001942a37369da53f682dadb3111"
+    "sha256": ""
   },
   "familyID": "mangadex-jp-es",
   "icon": {
@@ -47,5 +46,5 @@
   "releaseTrack": "beta",
   "status": "active",
   "universalLink": "https://synthetiq.uk/manga/modules/mangadex-jp-es",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
