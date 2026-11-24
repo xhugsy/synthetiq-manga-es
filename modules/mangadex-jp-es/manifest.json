@@ -2,7 +2,8 @@
   "allowedHosts": [
     "api.mangadex.org",
     "uploads.mangadex.org",
-    "*.mangadex.network"
+    "*.mangadex.network",
+    "wsrv.nl"
   ],
   "attribution": {
     "author": "xhugsy",
@@ -46,5 +47,5 @@
   "releaseTrack": "beta",
   "status": "active",
   "universalLink": "https://synthetiq.uk/manga/modules/mangadex-jp-es",
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
