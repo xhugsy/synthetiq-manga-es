@@ -234,10 +234,7 @@
     return typeof fileName === "string" ? fileName.trim() : "";
   }
 
-  function coverURL(mangaID, fileName) {
-    if (!fileName) return "";
-    return `${UPLOADS_URL}/covers/${String(mangaID || "").toLowerCase()}/${fileName}`;
-  }
+function coverURL(mangaID, fileName) { if (!fileName) return ""; const raw = UPLOADS_URL + "/covers/" + String(mangaID || "").toLowerCase() + "/" + fileName + ".512.jpg"; return "[https://wsrv.nl/?url=](https://wsrv.nl/?url=)" + encodeURIComponent(raw); }
 
   function mangaSummary(manga) {
     const id = `${WEBSITE_URL}/title/${String(manga && manga.id || "").toLowerCase()}`;
