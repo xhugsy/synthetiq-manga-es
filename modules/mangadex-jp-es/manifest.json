@@ -25,7 +25,7 @@
   "contractVersion": 1,
   "entry": {
     "path": "modules/mangadex-jp-es/index.js",
-    "sha256": "c6c1f4bad24031ee154e6e5b2ecdd7949a500ee6f8ab370f1f5bba7ecdc0e72e"
+    "sha256": "6c06a8b632bdfdfd2cff21e261120802c128656d5284c57c31194a67d03229d1"
   },
   "familyID": "mangadex-jp-es",
   "icon": {
