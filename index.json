@@ -13,7 +13,7 @@
       "language": "es",
       "manifest": {
         "path": "modules/mangadex-jp-es/manifest.json",
-        "sha256": "63649e0f45ac35de3d809e1ca00ede2bd3dacfd9494fb77fe0638a71a9c7a1ec"
+        "sha256": "a57d05db022750353d217b98260eb7182d8abfa5ef5df37dec73924d6c8f88c2"
       },
       "name": "MangaDex JP (Español)",
       "releaseTrack": "beta",
