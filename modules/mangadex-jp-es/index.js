@@ -23,6 +23,10 @@
   const DEFAULT_HEADERS = {
     Accept: "application/json",
   };
+  const COVER_HEADERS = {
+    Accept: "image/avif,image/webp,image/jpeg,image/*,*/*",
+    Referer: `${WEBSITE_URL}/`,
+  };
   const RETRYABLE_STATUS = new Set([403, 408, 425, 429, 500, 502, 503, 504]);
   const MAX_ATTEMPTS = 3;
   const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -230,20 +234,22 @@
     return typeof fileName === "string" ? fileName.trim() : "";
   }
 
-  function coverURL(mangaID, fileName, thumbnail) {
+  function coverURL(mangaID, fileName) {
     if (!fileName) return "";
-    const suffix = thumbnail ? ".256.jpg" : "";
-    return `${UPLOADS_URL}/covers/${String(mangaID || "").toLowerCase()}/${fileName}${suffix}`;
+    return `${UPLOADS_URL}/covers/${String(mangaID || "").toLowerCase()}/${fileName}`;
   }
 
   function mangaSummary(manga) {
     const id = `${WEBSITE_URL}/title/${String(manga && manga.id || "").toLowerCase()}`;
+    const img = coverURL(manga && manga.id, coverFileName(manga));
     return {
       id,
       href: id,
       url: id,
       title: localizedTitle(manga && manga.attributes),
-      image: coverURL(manga && manga.id, coverFileName(manga), true),
+      image: img,
+      cover: img,
+      imageHeaders: COVER_HEADERS,
     };
   }
 
@@ -373,13 +379,16 @@
       authors.push(label);
     }
     const id = `${WEBSITE_URL}/title/${String(manga.id || uuid).toLowerCase()}`;
+    const img = coverURL(manga.id || uuid, coverFileName(manga));
     const details = {
       id,
       href: id,
       url: id,
       title: localizedTitle(attributes),
       description: localizedDescription(attributes),
-      image: coverURL(manga.id || uuid, coverFileName(manga), false),
+      image: img,
+      cover: img,
+      imageHeaders: COVER_HEADERS,
       authors,
       author: authors[0] || "",
       genres: genreNames(attributes),
